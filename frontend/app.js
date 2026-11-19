@@ -284,6 +284,11 @@ function initWebSocket() {
     console.log("🔌 Connecting to TMS Real-Time Stream...");
     WS_CONN = new WebSocket(wsUrl);
 
+    // Authenticate in-band (browsers can't set headers on WebSockets, and tokens don't belong in URLs)
+    WS_CONN.onopen = () => {
+        WS_CONN.send(JSON.stringify({ type: 'auth', token: localStorage.getItem('tms_token') }));
+    };
+
     WS_CONN.onmessage = (event) => {
         try {
             const msg = JSON.parse(event.data);
@@ -293,8 +298,14 @@ function initWebSocket() {
         } catch (e) { console.error("WS Message Error:", e); }
     };
 
-    WS_CONN.onclose = () => {
+    WS_CONN.onclose = (ev) => {
         WS_CONN = null;
+        if (ev && ev.code === 4401) {   // session expired/invalid -> back to login
+            localStorage.removeItem('tms_token');
+            localStorage.removeItem('tms_user');
+            window.location.href = '/login.html';
+            return;
+        }
         console.warn("🔌 WS Disconnected. Retrying in 5s...");
         setTimeout(initWebSocket, 5000);
     };
