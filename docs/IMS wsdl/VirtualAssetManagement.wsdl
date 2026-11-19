@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright (c) 2011, Doremi Labs, Inc.
+    All rights reserved.
+
+  Redistribution in source or binary forms, with or without
+  modification, are NOT permitted.
+
+    Doremi Labs, Inc.
+    1020 Chestnut St.
+    Burbank, CA 91506
+    Tel : (818) 562 1101
+    Fax : (818) 562 1109
+
+-->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.doremilabs.com/dc/dcp/ws/v1" xmlns:v1_0="http://www.doremilabs.com/dc/dcp/ws/v1_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:com="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common" xmlns:virt="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/virtualassetmanagement" name="VirtualAssetManagement_v1" targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1">
+    <wsdl:documentation>
+                Virtual Asset Management provides functions to List, add or delete a virutal asset (ie: Live).
+    </wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1_0">
+			<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+			<xsd:import schemaLocation="Common.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common"/>
+			<xsd:import schemaLocation="VirtualAssetManagement.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/virtualassetmanagement"/>
+			<xsd:element name="CreateVirtualClip">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="parameters" type="virt:VirtualAssetParameters"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CreateVirtualClipResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="clipId" type="virt:VirtualClipCreationId"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetVirtualClipList">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetVirtualClipListResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CreateVirtualClip">
+		<wsdl:part name="parameters" element="v1_0:CreateVirtualClip"/>
+	</wsdl:message>
+	<wsdl:message name="CreateVirtualClipResponse">
+		<wsdl:part name="parameters" element="v1_0:CreateVirtualClipResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetVirtualClipList">
+		<wsdl:part name="parameters" element="v1_0:GetVirtualClipList"/>
+	</wsdl:message>
+	<wsdl:message name="GetVirtualClipListResponse">
+		<wsdl:part name="parameters" element="v1_0:GetVirtualClipListResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="VirtualAssetManagement_v1_0">
+		<wsdl:operation name="CreateVirtualClip">
+			<wsdl:documentation>
+                 CreateVirtualClip
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:CreateVirtualClip"/>
+			<wsdl:output message="tns:CreateVirtualClipResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetVirtualClipList">
+			<wsdl:documentation>
+                 GetVirtualClipList
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+                    Permission denied
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetVirtualClipList"/>
+			<wsdl:output message="tns:GetVirtualClipListResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="VirtualAssetManagement_v1_0_SOAPBinding" type="tns:VirtualAssetManagement_v1_0">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreateVirtualClip">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetVirtualClipList">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="VirtualAssetManagement_v1_0">
+		<wsdl:port name="SOAPOverHTTP" binding="tns:VirtualAssetManagement_v1_0_SOAPBinding">
+			<soap:address location="http://127.0.0.1:10000/dc/dcp/ws/v1/VirtualAssetManagement"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,103 @@
+/* PREMIUM SCHEDULER MODAL */
+.sch-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(9, 9, 11, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.sch-modal-overlay.active {
+    display: flex;
+}
+
+.sch-modal {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    /* overflow: hidden removed to prevent dropdown clipping */
+    animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.sch-modal-header {
+    background: white;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.sch-modal-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.sch-modal-body {
+    padding: 32px;
+}
+
+.sch-modal-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.btn-secondary {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: var(--surface);
+    border-color: var(--text-muted);
+}
+
+/* Utils for Scheduler Table */
+.time-col strong {
+    font-size: 15px;
+    color: #1e293b;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.date-sub {
+    font-size: 11px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* Utils */
+.auditorium-badge {
+    background: #e0f2fe;
+    /* Light blue instead of glow */
+    color: var(--primary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+}

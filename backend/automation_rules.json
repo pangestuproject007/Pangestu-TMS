@@ -1,0 +1,20 @@
+[
+    {
+        "id": "rule-001",
+        "name": "Evening Shutdown",
+        "type": "schedule",
+        "time": "23:00",
+        "days": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+        ],
+        "action": "POWER_OFF",
+        "targets": "all",
+        "enabled": false
+    }
+]

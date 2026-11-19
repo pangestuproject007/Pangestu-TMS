@@ -1,0 +1,465 @@
+[
+  {
+    "uuid": "SPL-1769681496286",
+    "title": "New Show",
+    "duration": "00:03:39",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "9aa369b8-cb94-4a02-83f1-b9150116872b",
+        "title": "RoyalebySoKlinSweetFloral-Thematic_F_SLS_rQ",
+        "duration": "00:00:31",
+        "size": "584.6 MB",
+        "kind": "Advertisement",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "989c368f-5d59-4550-980e-22fc9a154900",
+        "title": "sofresh30s_F_SLS_rQ",
+        "duration": "00:00:31",
+        "size": "762.7 MB",
+        "kind": "Advertisement",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "fb553ef9-08d2-4f47-b63f-225b6fda0d1c",
+        "title": "MALAM-3-YASINAN_TLR_S_IND-EN_51_2K_20251111_PYR_OV",
+        "duration": "00:02:01",
+        "size": "1.3 GB",
+        "kind": "Trailer",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "c181d5cc-88da-4567-800a-71530dd6273c",
+        "title": "LDR_DUSUN MAYIT_2K_13THN",
+        "duration": "00:00:21",
+        "size": "110.5 MB",
+        "kind": "Advertisement",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      }
+    ],
+    "saved_at": 1769681496.6045678
+  },
+  {
+    "uuid": "SPL-1769681522310",
+    "title": "New Show",
+    "duration": "00:00:15",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      }
+    ],
+    "saved_at": 1769681522.3126693
+  },
+  {
+    "uuid": "SPL-1769682379260",
+    "title": "TEST",
+    "duration": "00:00:15",
+    "cpls": [
+      {
+        "uuid": "359e22af-25f2-4489-a271-94aa3eda8aa3",
+        "title": "Black MOS 5sec",
+        "duration": "00:00:05",
+        "size": "8.4 MB",
+        "kind": "Policy",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "435f3d82-0e80-45d6-af68-27db5940820b",
+        "title": "HOLAWELCOME-REGULAR_SCOPE",
+        "duration": "00:00:10",
+        "size": "78.2 MB",
+        "kind": "Psa",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      }
+    ],
+    "saved_at": 1769682379.2720313
+  },
+  {
+    "uuid": "SPL-1769685196673",
+    "title": "TESting",
+    "duration": "00:01:17",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "9aa369b8-cb94-4a02-83f1-b9150116872b",
+        "title": "RoyalebySoKlinSweetFloral-Thematic_F_SLS_rQ",
+        "duration": "00:00:31",
+        "size": "584.6 MB",
+        "kind": "Advertisement",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      },
+      {
+        "uuid": "989c368f-5d59-4550-980e-22fc9a154900",
+        "title": "sofresh30s_F_SLS_rQ",
+        "duration": "00:00:31",
+        "size": "762.7 MB",
+        "kind": "Advertisement",
+        "fps": 24,
+        "encrypted": false,
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free"
+      }
+    ],
+    "saved_at": 1769685196.6766348
+  },
+  {
+    "uuid": "SPL-1769689208979",
+    "title": "New Show",
+    "duration": "00:00:15",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free",
+        "elId": 1769689206585
+      }
+    ],
+    "saved_at": 1769689208.9825108
+  },
+  {
+    "uuid": "SPL-1769689213676",
+    "title": "New Showa",
+    "duration": "00:00:30",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free",
+        "elId": 1769689206585
+      },
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free",
+        "elId": 1769689210240
+      }
+    ],
+    "saved_at": 1769689213.99584
+  },
+  {
+    "uuid": "SPL-1769689219781",
+    "title": "New Showaasa",
+    "duration": "01:35:09",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free",
+        "elId": 1769689206585
+      },
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Free",
+        "elId": 1769689210240
+      },
+      {
+        "uuid": "dceb3aef-9ee1-4cec-88ec-3368a76fa201",
+        "title": "DUSUN-MAYIT_FTR_S_IN-IN-EN_HMK_20251202_KPP_VF",
+        "duration": "01:34:39",
+        "size": "119.9 GB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": true,
+        "is3d": false,
+        "resolution": "S",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": true,
+        "audio": "7.1",
+        "screens": [
+          "Theater 1"
+        ],
+        "kdm": "Missing",
+        "elId": 1769689215810
+      }
+    ],
+    "saved_at": 1769689220.1011097
+  },
+  {
+    "uuid": "SPL-1770101166993",
+    "title": "TEST TRF",
+    "duration": "01:34:39",
+    "cpls": [
+      {
+        "uuid": "dceb3aef-9ee1-4cec-88ec-3368a76fa201",
+        "title": "DUSUN-MAYIT_FTR_S_IN-IN-EN_HMK_20251202_KPP_VF",
+        "duration": "01:34:39",
+        "size": "119.9 GB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": true,
+        "is3d": false,
+        "resolution": "S",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": true,
+        "audio": "7.1",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Missing",
+        "elId": 1770101152447.7617
+      }
+    ],
+    "saved_at": 1770101167.0151422
+  },
+  {
+    "uuid": "SPL-1770101212544",
+    "title": "TEST TRF",
+    "duration": "01:34:39",
+    "cpls": [
+      {
+        "uuid": "dceb3aef-9ee1-4cec-88ec-3368a76fa201",
+        "title": "DUSUN-MAYIT_FTR_S_IN-IN-EN_HMK_20251202_KPP_VF",
+        "duration": "01:34:39",
+        "size": "119.9 GB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": true,
+        "is3d": false,
+        "resolution": "S",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": true,
+        "audio": "7.1",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Missing",
+        "elId": 1770101152447.7617
+      }
+    ],
+    "saved_at": 1770101212.5628533
+  },
+  {
+    "uuid": "SPL-1770124173927",
+    "title": "PANGESTUTMS",
+    "duration": "00:03:48",
+    "cpls": [
+      {
+        "uuid": "c1a1aab7-3cf2-4b3e-8934-bca859e2d26f",
+        "title": "Jungle_Juice_POWER_FLAT_1998x1080_dcp",
+        "duration": "00:00:15",
+        "size": "95.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Free",
+        "elId": 1770124147299
+      },
+      {
+        "uuid": "e3cab26d-d6b0-4240-8fee-3e271c59149e",
+        "title": "LEADER-SENSOR-TIMUR_FTR_F",
+        "duration": "00:00:10",
+        "size": "29.7 MB",
+        "kind": "Feature",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "F",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "2.0",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Free",
+        "elId": 1770124154006
+      },
+      {
+        "uuid": "fb553ef9-08d2-4f47-b63f-225b6fda0d1c",
+        "title": "MALAM-3-YASINAN_TLR_S_IND-EN_51_2K_20251111_PYR_OV",
+        "duration": "00:02:01",
+        "size": "1.3 GB",
+        "kind": "Trailer",
+        "fps": 24,
+        "encrypted": false,
+        "is3d": false,
+        "resolution": "S",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": true,
+        "audio": "5.1",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Free",
+        "elId": 1770124161709
+      },
+      {
+        "uuid": "fe045bfd-76eb-49c2-a07f-717594c5fcdf",
+        "title": "AvengersDooms_TLR-B-2D-ENC_S_EN-ind_ID_51_2K_DI_20251209_DLX_IOP",
+        "duration": "00:01:22",
+        "size": "1.4 GB",
+        "kind": "Trailer",
+        "fps": 24,
+        "encrypted": true,
+        "is3d": false,
+        "resolution": "S",
+        "standard": "SMPTE",
+        "atmos": false,
+        "subtitles": false,
+        "audio": "7.1",
+        "screens": [
+          "Cinema 1"
+        ],
+        "kdm": "Missing",
+        "elId": 1770124162840
+      }
+    ],
+    "saved_at": 1770124173.9318464
+  }
+]

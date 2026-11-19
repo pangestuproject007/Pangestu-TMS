@@ -1,0 +1,9 @@
+﻿[
+    {
+        "id": "USR-001",
+        "username": "admin",
+        "email": "admin@example.com",
+        "password": "CHANGE_ME",
+        "privilege": "Admin"
+    }
+]

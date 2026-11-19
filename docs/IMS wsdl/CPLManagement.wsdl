@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright (c) 2011, Doremi Labs, Inc.
+    All rights reserved.
+
+  Redistribution in source or binary forms, with or without
+  modification, are NOT permitted.
+
+    Doremi Labs, Inc.
+    1020 Chestnut St.
+    Burbank, CA 91506
+    Tel : (818) 562 1101
+    Fax : (818) 562 1109
+
+-->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.doremilabs.com/dc/dcp/ws/v1" xmlns:v1_0="http://www.doremilabs.com/dc/dcp/ws/v1_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:com="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common" xmlns:cpl="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/cplmanagement" name="CPLManagement_v1" targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1">
+    <wsdl:documentation>
+                Asset Management provides functions to interact with CPL on the system.
+    </wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1_0">
+			<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+			<xsd:import schemaLocation="Common.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common"/>
+			<xsd:import schemaLocation="CPLManagement.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/cplmanagement"/>
+			<xsd:element name="GetCPLList">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLListResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cplList" type="cpl:ArrayOfCplId"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteCPL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+						<xsd:element name="location" type="xsd:string" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteCPLResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cplInfo" type="cpl:CPLInfo"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLContent">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLContentResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetCPLContent">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetCPLContentResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ValidateCPL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+						<!-- indicates how hard the system shall try to validate the CPL. Default value is zero !-->
+						<xsd:element name="checkStrength" type="xsd:int" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="ValidateCPLResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="status" type="com:WorkingStatusInfo"/>
+						<xsd:element name="errorCode" type="xsd:int"/>
+						<xsd:element name="errorString" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLListInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLListInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="cplList" type="cpl:ArrayOfCplInfo"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLSettings">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+						<xsd:element name="type" type="cpl:Setting" minOccurs="0"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLSettingsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetCPLSettings">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetCPLSettingsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="RunIntegrityChecks">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="RunIntegrityChecksResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AbortIntegrityChecks">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="AbortIntegrityChecksResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLDefaultSettings">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="cplId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetCPLDefaultSettingsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetCPLList">
+		<wsdl:part name="parameters" element="v1_0:GetCPLList"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLListResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteCPL">
+		<wsdl:part name="parameters" element="v1_0:DeleteCPL"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteCPLResponse">
+		<wsdl:part name="parameters" element="v1_0:DeleteCPLResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLInfo">
+		<wsdl:part name="parameters" element="v1_0:GetCPLInfo"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLInfoResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLContent">
+		<wsdl:part name="parameters" element="v1_0:GetCPLContent"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLContentResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLContentResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SetCPLContent">
+		<wsdl:part name="parameters" element="v1_0:SetCPLContent"/>
+	</wsdl:message>
+	<wsdl:message name="SetCPLContentResponse">
+		<wsdl:part name="parameters" element="v1_0:SetCPLContentResponse"/>
+	</wsdl:message>
+	<wsdl:message name="ValidateCPL">
+		<wsdl:part name="parameters" element="v1_0:ValidateCPL"/>
+	</wsdl:message>
+	<wsdl:message name="ValidateCPLResponse">
+		<wsdl:part name="parameters" element="v1_0:ValidateCPLResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLListInfo">
+		<wsdl:part name="parameters" element="v1_0:GetCPLListInfo"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLListInfoResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLListInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLSettings">
+		<wsdl:part name="parameters" element="v1_0:GetCPLSettings"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLSettingsResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLSettingsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SetCPLSettings">
+		<wsdl:part name="parameters" element="v1_0:SetCPLSettings"/>
+	</wsdl:message>
+	<wsdl:message name="SetCPLSettingsResponse">
+		<wsdl:part name="parameters" element="v1_0:SetCPLSettingsResponse"/>
+	</wsdl:message>
+	<wsdl:message name="RunIntegrityChecks">
+		<wsdl:part name="parameters" element="v1_0:RunIntegrityChecks"/>
+	</wsdl:message>
+	<wsdl:message name="RunIntegrityChecksResponse">
+		<wsdl:part name="parameters" element="v1_0:RunIntegrityChecksResponse"/>
+	</wsdl:message>
+	<wsdl:message name="AbortIntegrityChecks">
+		<wsdl:part name="parameters" element="v1_0:AbortIntegrityChecks"/>
+	</wsdl:message>
+	<wsdl:message name="AbortIntegrityChecksResponse">
+		<wsdl:part name="parameters" element="v1_0:AbortIntegrityChecksResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLDefaultSettings">
+		<wsdl:part name="parameters" element="v1_0:GetCPLDefaultSettings"/>
+	</wsdl:message>
+	<wsdl:message name="GetCPLDefaultSettingsResponse">
+		<wsdl:part name="parameters" element="v1_0:GetCPLDefaultSettingsResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="CPLManagement_v1_0">
+		<wsdl:operation name="GetCPLList">
+			<wsdl:documentation>
+                 GetCPLList
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLList"/>
+			<wsdl:output message="tns:GetCPLListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCPL">
+			<wsdl:documentation>
+                 DeleteCPL
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:DeleteCPL"/>
+			<wsdl:output message="tns:DeleteCPLResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLInfo">
+			<wsdl:documentation>
+                 GetCPLInfo
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLInfo"/>
+			<wsdl:output message="tns:GetCPLInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLContent">
+			<wsdl:documentation>
+                 GetCPLContent
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLContent"/>
+			<wsdl:output message="tns:GetCPLContentResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetCPLContent">
+			<wsdl:documentation>
+                 SetCPLContent
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:SetCPLContent"/>
+			<wsdl:output message="tns:SetCPLContentResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ValidateCPL">
+			<wsdl:documentation>
+                 ValidateCPL
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:ValidateCPL"/>
+			<wsdl:output message="tns:ValidateCPLResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLListInfo">
+			<wsdl:documentation>
+                 GetCPLListInfo
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLListInfo"/>
+			<wsdl:output message="tns:GetCPLListInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLSettings">
+			<wsdl:documentation>
+                 GetCPLSettings
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLSettings"/>
+			<wsdl:output message="tns:GetCPLSettingsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetCPLSettings">
+			<wsdl:documentation>
+                 SetCPLSettings
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+                    Permission denied
+			</wsdl:documentation>
+			<wsdl:input message="tns:SetCPLSettings"/>
+			<wsdl:output message="tns:SetCPLSettingsResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="RunIntegrityChecks">
+			<wsdl:documentation>
+                 RunIntegrityChecks
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:RunIntegrityChecks"/>
+			<wsdl:output message="tns:RunIntegrityChecksResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="AbortIntegrityChecks">
+			<wsdl:documentation>
+                 AbortIntegrityChecks
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:AbortIntegrityChecks"/>
+			<wsdl:output message="tns:AbortIntegrityChecksResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLDefaultSettings">
+			<wsdl:documentation>
+                 GetCPLDefaultSettings
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetCPLDefaultSettings"/>
+			<wsdl:output message="tns:GetCPLDefaultSettingsResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CPLManagement_v1_0_SOAPBinding" type="tns:CPLManagement_v1_0">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetCPLList">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteCPL">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLContent">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetCPLContent">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ValidateCPL">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLListInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLSettings">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetCPLSettings">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RunIntegrityChecks">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AbortIntegrityChecks">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetCPLDefaultSettings">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CPLManagement_v1_0">
+		<wsdl:port name="SOAPOverHTTP" binding="tns:CPLManagement_v1_0_SOAPBinding">
+			<soap:address location="http://127.0.0.1:10000/dc/dcp/ws/v1/CPLManagement"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

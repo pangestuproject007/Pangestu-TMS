@@ -1,0 +1,200 @@
+/* CONTENT KIND BADGES (DCNC) */
+.kdm-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    background: #94a3b8;
+    /* Missing/Default */
+}
+
+.kdm-badge.Valid {
+    background: #16a34a;
+}
+
+.kdm-badge.Free {
+    background: #3b82f6;
+    /* Blue */
+}
+
+/* Green */
+
+/* Green */
+.kdm-badge.Expired {
+    background: #dc2626;
+}
+
+/* Red */
+.kdm-badge.NotYetValid {
+    background: #ca8a04;
+}
+
+/* Yellow */
+.kdm-badge.Missing {
+    background: #94a3b8;
+    color: #f1f5f9;
+}
+
+.kind-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    background: #64748b;
+    /* Default/Unknown */
+}
+
+.kind-badge.Feature {
+    background: #3b82f6;
+}
+
+/* Blue */
+.kind-badge.Trailer {
+    background: #10b981;
+}
+
+/* Green */
+.kind-badge.Advertisement {
+    background: #f59e0b;
+}
+
+/* Amber */
+.kind-badge.Teaser {
+    background: #06b6d4;
+}
+
+/* Cyan */
+.kind-badge.Psa {
+    background: #8b5cf6;
+}
+
+/* Purple */
+.kind-badge.Policy {
+    background: #ef4444;
+}
+
+/* Red */
+.kind-badge.Rating {
+    background: #64748b;
+}
+
+/* Slate */
+.kind-badge.Test {
+    background: #f97316;
+}
+
+/* Orange */
+.kind-badge.Transitional {
+    background: #a8a29e;
+}
+
+/* Stone */
+
+/* FILTER BUTTONS */
+.filter-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: #f1f5f9;
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    font-weight: 600;
+}
+
+/* GROUP HEADERS */
+.group-header td {
+    background: #e2e8f0;
+    color: #475569;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 10px 16px;
+    border-top: 1px solid #cbd5e1;
+}
+
+/* TECHNICAL ATTRIBUTE BADGES */
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    margin-right: 4px;
+}
+
+.tech-badge.res-s {
+    color: #2563eb;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+/* Scope */
+.tech-badge.res-f {
+    color: #059669;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+/* Flat */
+.tech-badge.is-3d {
+    color: #7c3aed;
+    background: #f5f3ff;
+    border-color: #ddd6fe;
+}
+
+/* 3D */
+.tech-badge.enc {
+    color: #dc2626;
+    background: #fef2f2;
+    border-color: #fecaca;
+}
+
+/* Encrypted */
+.tech-badge.std {
+    background: #f1f5f9;
+}
+
+/* SMPTE/IOP */
+.tech-badge.audio {
+    color: #0891b2;
+    background: #ecfeff;
+    border-color: #a5f3fc;
+}
+
+/* 7.1 / 5.1 */
+.tech-badge.atmos {
+    color: #daaa00;
+    background: #fffbe6;
+    border-color: #ffe58f;
+}
+
+/* Atmos */
+.tech-badge.sub {
+    color: #db2777;
+    background: #fdf2f8;
+    border-color: #fce7f3;
+}
+
+/* Subtitles */

@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>PangestuTMS | Enterprise</title>
+    <link rel="stylesheet" href="index.css?v=3">
+    <link rel="stylesheet" href="scheduler.css?v=3">
+    <link rel="stylesheet" href="tms_badges.css?v=3">
+    <link rel="stylesheet" href="spl_editor.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="tms-enterprise">
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-logo"><i class="fas fa-theater-masks"></i></div>
+                    <div class="brand-name">PANGESTU<span>TMS</span></div>
+                </div>
+                <!-- Toggle Button -->
+                <button id="sidebar-toggle" class="sidebar-toggle" title="Collapse Sidebar" onclick="toggleSidebar()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <nav class="side-nav">
+                <button class="nav-item active" data-tab="tms-dash">
+                    <i class="fas fa-video"></i> <span data-i18n="nav_dash">Cinema Overview</span>
+                </button>
+                <button class="nav-item" data-tab="tms-timeline">
+                    <i class="fas fa-clock"></i> <span data-i18n="nav_timeline">Visual Grid Schedule</span>
+                </button>
+                <button class="nav-item" data-tab="tms-scheduler">
+                    <i class="fas fa-calendar-alt"></i> <span data-i18n="nav_scheduler">Central Scheduler</span>
+                </button>
+                <button class="nav-item" data-tab="tms-content">
+                    <i class="fas fa-hdd"></i> <span data-i18n="nav_content">Global Library (LMS)</span>
+                </button>
+                <button class="nav-item" data-tab="tms-spl">
+                    <i class="fas fa-list-ol"></i> <span data-i18n="nav_spl">SPL Management & Library</span>
+                </button>
+                <button class="nav-item" data-tab="tms-auto" data-min-priv="Manager">
+                    <i class="fas fa-bolt"></i> <span data-i18n="nav_auto">Cinema Automation</span>
+                </button>
+
+                <div class="nav-header">Management</div>
+                <button class="nav-item" data-tab="tms-config" data-min-priv="Admin">
+                    <i class="fas fa-couch"></i> <span data-i18n="nav_config">Auditorium Management</span>
+                </button>
+                <button class="nav-item" data-tab="tms-system" data-min-priv="Admin">
+                    <i class="fas fa-sliders-h"></i> <span data-i18n="nav_system">System Settings</span>
+                </button>
+                <button class="nav-item" data-tab="tms-about">
+                    <i class="fas fa-ticket-alt"></i> <span data-i18n="nav_about">About & System</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer-user" id="user-profile-btn" title="Logout" onclick="logout()">
+                <div class="user-info">
+                    <div class="avatar" id="current-user-avatar">AD</div>
+                    <div class="user-details">
+                        <span class="name" id="current-user-name">Administrator</span>
+                        <span class="role">System Admin</span>
+                    </div>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Sidebar Mobile Overlay -->
+        <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+        <!-- Main Content Area -->
+        <main class="content-area">
+            <header class="top-bar">
+                <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="page-title">
+                    <h2 id="current-tab-title">Cinema Overview</h2>
+                    <p id="current-tab-desc">Real-time status of all auditoriums</p>
+                </div>
+
+                <div class="top-actions">
+                    <!-- REALTIME CLOCK -->
+                    <div id="rosetta-clock" class="rosetta-clock-badge" title="Synced with NTP Server (Stratum 2)">
+                        <span class="time">--:--:--</span>
+                        <div class="clock-meta">
+                            <span class="date">Connect...</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="view-container">
+                <!-- DASHBOARD VIEW -->
+                <div id="view-tms-dash" class="tms-view active">
+                    <div class="stat-summary">
+                        <div class="summary-card">
+                            <div class="icon"><i class="fas fa-desktop"></i></div>
+                            <div class="info">
+                                <label data-i18n="lbl_total_screens">Total Screens</label>
+                                <span id="stat-total">0</span>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="icon" style="color:var(--success)"><i class="fas fa-play"></i></div>
+                            <div class="info">
+                                <label data-i18n="lbl_now_playing">Now Playing</label>
+                                <span id="stat-playing">0</span>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="icon" style="color:var(--danger)"><i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="info">
+                                <label data-i18n="lbl_alerts">Alerts</label>
+                                <span id="stat-alerts">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="theater-grid" class="theater-grid">
+                        <div class="loading-state">
+                            <div class="spinner"></div>
+                            <p>Synchronizing Theater Data...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TIMELINE VIEW (ROSETTA STYLE) -->
+                <div id="view-tms-timeline" class="tms-view">
+                    <!-- Content injected by app.js on load -->
+                </div>
+
+                <!-- CONTENT MANAGER VIEW (LMS) -->
+                <div id="view-tms-content" class="tms-view">
+                    <div class="content-header card">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search CPL Title or UUID across all screens...">
+                        </div>
+                        <div class="content-filters">
+                            <button class="filter-btn active" data-kind="all">All</button>
+                            <button class="filter-btn" data-kind="Feature">Feature</button>
+                            <button class="filter-btn" data-kind="Trailer">Trailer</button>
+                            <button class="filter-btn" data-kind="Advertisement">Ad</button>
+                            <button class="filter-btn" data-kind="Teaser">Teaser</button>
+                            <button class="filter-btn" data-kind="Psa">PSA</button>
+                            <button class="filter-btn" data-kind="Policy">Policy</button>
+                            <button class="filter-btn" data-kind="Rating">Rating</button>
+                            <button class="filter-btn" data-kind="Test">Test</button>
+                            <button class="filter-btn" data-kind="Transitional">Trans</button>
+                            <button class="filter-btn" data-kind="Unknown">Unknown</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="tms-table-container">
+                            <table class="tms-table">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Kind</th>
+                                        <th>KDM</th>
+                                        <th>Duration</th>
+                                        <th>Availability</th>
+                                        <th>Size</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="global-cpl-list">
+                                    <!-- Data populated by JS -->
+                                    <tr>
+                                        <td colspan="7" class="empty">Connect a screen to view shared library content.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: SPL EDITOR -->
+                <div id="view-tms-spl" class="tms-view">
+                    <!-- TOP STRATEGIC AREA: SPL SHELF -->
+                    <div class="spl-editor-layout">
+                        <!-- COL 1: SOURCE LIBRARY -->
+                        <div class="spl-panel source-panel card">
+                            <div class="panel-header">
+                                <div class="header-main">
+                                    <i class="fas fa-database"></i>
+                                    <span>Master Library</span>
+                                </div>
+                            </div>
+                            <div class="spl-list-container" id="spl-source-list">
+                                <!-- JS Populated -->
+                            </div>
+                            <div class="panel-footer">
+                                <div class="search-bar compact" style="width: 100%;">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="spl-source-search" placeholder="Filter Master Library..."
+                                        style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COL 2: PLAYLIST BUILDER (Target) -->
+                        <div class="spl-panel target-panel card">
+                            <div class="panel-header">
+                                <div class="header-main">
+                                    <i class="fas fa-film"></i>
+                                    <div class="title-group">
+                                        <input type="text" id="new-spl-title" placeholder="Untitled Playlist"
+                                            value="New Show">
+                                        <small id="spl-edit-status">Editing Workspace</small>
+                                    </div>
+                                </div>
+                                <div class="header-stats">
+                                    <span class="badge-dur" id="new-spl-duration">--:--:--</span>
+                                </div>
+                            </div>
+
+                            <!-- Toolbar Removed -->
+
+                            <div class="spl-list-container target-list" id="spl-target-list">
+                                <div class="empty-placeholder">
+                                    <i class="fas fa-plus-circle"></i>
+                                    <p>Drag CPLs Here</p>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer main-actions">
+                                <button class="tool-btn danger" onclick="closeCurrentSPL()"
+                                    title="Close / Eject Workspace">
+                                    <i class="fas fa-eject"></i> Close
+                                </button>
+                                <button class="tool-btn highlight" onclick="saveSPL()" title="Save to TMS Library">
+                                    <i class="fas fa-save"></i> Save
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- COL 3: SAVED PLAYLISTS (Show List) -->
+                        <div class="spl-panel saved-panel card">
+                            <div class="panel-header">
+                                <div class="header-main">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>Show List</span>
+                                </div>
+                            </div>
+                            <div class="spl-list-container" id="saved-spl-gallery">
+                                <!-- JS Populated -->
+                            </div>
+                            <div class="panel-footer">
+                                <div class="search-bar compact" style="width: 100%;">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="spl-gallery-search" placeholder="Filter Show List..."
+                                        style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- MODAL: SPL PREVIEW (Dedicated Wrapper) -->
+                <div id="spl-preview-modal" class="modal-overlay">
+                    <div class="modal-card">
+                        <div class="modal-header">
+                            <div class="modal-title-group">
+                                <h3 id="preview-spl-title"><i class="fas fa-film"></i> Playlist Preview</h3>
+                                <span id="preview-spl-duration" class="modal-badge">00:00:00</span>
+                            </div>
+                            <span class="close-modal" onclick="closeSPLPreview()">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Populated with spl-info-panel and preview-spl-list by app.js -->
+                            <div class="loading-spinner">Loading preview...</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary" onclick="closeSPLPreview()">Close</button>
+                            <button class="btn-primary" onclick="distributePreviewSPL()">
+                                <i class="fas fa-paper-plane"></i> Send to Auditoriums
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCHEDULER VIEW -->
+                <div id="view-tms-scheduler" class="tms-view">
+                    <div class="scheduler-layout card">
+                        <div class="sch-header">
+                            <div class="sch-title-group">
+                                <h3>Fleet Schedule Overview</h3>
+                                <p>Consolidated view of all upcoming shows</p>
+                            </div>
+                            <div class="sch-actions">
+                                <button class="btn-primary" onclick="openSchedulerModal()"><i class="fas fa-plus"></i>
+                                    Plot New Show</button>
+                            </div>
+                        </div>
+
+                        <div class="tms-table-container">
+                            <table class="tms-table">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Auditorium</th>
+                                        <th>Playlist (SPL)</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="central-schedule-list">
+                                    <tr>
+                                        <td colspan="6" class="empty">Initializing schedule data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AUTOMATION VIEW (Placeholder) -->
+                <div id="view-tms-auto" class="tms-view">
+                    <div class="card">
+                        <h3>Automation Rules</h3>
+                        <p class="empty">Automation configuration coming soon.</p>
+                    </div>
+                </div>
+
+                <!-- NEW SYSTEM SETTINGS VIEW -->
+                <div id="view-tms-system" class="tms-view">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-sliders-h"></i> General Preferences</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label data-i18n="lbl_time_format">Time Format</label>
+                                    <div class="input-group" style="display: flex; gap: 8px;">
+                                        <select id="sys-time-format" style="flex: 1;">
+                                            <option value="24" data-i18n="opt_24h">24-Hour (13:00)</option>
+                                            <option value="12" data-i18n="opt_12h">12-Hour (1:00 PM)</option>
+                                        </select>
+                                        <button class="btn-primary" style="width: auto;"
+                                            onclick="saveSystemSetting('time_format', 'sys-time-format')"><i
+                                                class="fas fa-save"></i> <span data-i18n="save">Save</span></button>
+                                    </div>
+                                    <small class="form-text text-muted" data-i18n="hint_time">Updates the clock display
+                                        across the
+                                        application.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label data-i18n="lbl_language">System Language</label>
+                                    <div class="input-group" style="display: flex; gap: 8px;">
+                                        <select id="sys-language" style="flex: 1;">
+                                            <option value="en">English (United Kingdom)</option>
+                                            <option value="id">Bahasa Indonesia</option>
+                                            <option value="es">Español</option>
+                                        </select>
+                                        <button class="btn-primary" style="width: auto;"
+                                            onclick="saveSystemSetting('language', 'sys-language')"><i
+                                                class="fas fa-save"></i> <span data-i18n="save">Save</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row" style="margin-top: 20px;">
+                                <div class="form-group">
+                                    <label data-i18n="lbl_logs">Log Retention</label>
+                                    <div class="input-group" style="display: flex; gap: 8px;">
+                                        <select id="sys-logs" style="flex: 1;">
+                                            <option value="7" data-i18n="days_7">7 Days</option>
+                                            <option value="30" selected data-i18n="days_30">30 Days</option>
+                                            <option value="90" data-i18n="days_90">90 Days</option>
+                                        </select>
+                                        <button class="btn-primary" style="width: auto;"
+                                            onclick="saveSystemSetting('logs', 'sys-logs')"><i class="fas fa-save"></i>
+                                            <span data-i18n="save">Save</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- USER MANAGEMENT CARD -->
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-header">
+                            <h3><i class="fas fa-users-cog"></i> User Management</h3>
+                            <button class="btn-primary" onclick="openAddUserModal()">
+                                <i class="fas fa-plus"></i> Add User
+                            </button>
+                        </div>
+                        <div class="card-body" style="padding: 0;">
+                            <div class="tms-table-container">
+                                <table class="tms-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Privilege</th>
+                                            <th style="text-align: right;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="user-list-body">
+                                        <!-- Populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONFIG VIEW (Rosetta/Cosmos Style) -->
+                <div id="view-tms-config" class="tms-view">
+                    <div class="settings-container">
+                        <!-- LEFT: Inventory Sidebar -->
+                        <div class="settings-sidebar">
+                            <div class="sidebar-top">
+                                <h3>Equipment Inventory</h3>
+                            </div>
+
+                            <div id="config-screen-list" class="screen-inventory-list">
+                                <!-- Populated by JS -->
+                            </div>
+
+                            <!-- BOTTOM ACTIONS -->
+                            <div class="sidebar-footer">
+                                <!-- Inline Add UI (moved here) -->
+                                <div id="inline-add-screen" class="inline-add-panel" style="display:none;">
+                                    <div class="form-group" style="margin-bottom:12px;">
+                                        <label>Auditorium Name</label>
+                                        <input type="text" id="new-screen-input">
+                                    </div>
+                                    <div class="inline-actions">
+                                        <button class="btn-primary btn-xs" onclick="confirmInlineAdd()">Confirm</button>
+                                        <button class="btn-secondary btn-xs" onclick="toggleInlineAdd()">Cancel</button>
+                                    </div>
+                                </div>
+
+                                <div class="inventory-item-add" onclick="toggleInlineAdd()">
+                                    <div class="icon"><i class="fas fa-plus"></i></div>
+                                    <div class="details">
+                                        <div class="name">Register New Theater</div>
+                                        <div class="sub">Add Equipment Console</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT: Equipment Detail Console -->
+                        <div class="settings-main-panel">
+                            <div class="console-container">
+                                <div class="empty-state-card" id="settings-empty-state">
+                                    <i class="fas fa-projector"></i>
+                                    <h3>Hardware Console Dashboard</h3>
+                                    <p>Select an auditorium from the inventory to access technical configurations.</p>
+                                </div>
+
+                                <!-- Detailed Form -->
+                                <div id="screen-config-form" style="display:none;">
+                                    <div class="console-header">
+                                        <div class="title-area">
+                                            <div class="rename-group"
+                                                style="display:flex; align-items:center; gap:12px;">
+                                                <i class="fas fa-edit"
+                                                    style="color: var(--text-muted); font-size: 14px;"></i>
+                                                <input type="text" id="cfg-auditorium-name"
+                                                    style="font-size: 32px; font-weight: 800; border: none; background: transparent; padding: 0; width: auto; min-width: 200px; color: var(--text-main); outline: none;"
+                                                    title="Click to rename" placeholder="Enter Theater Name">
+                                            </div>
+                                            <p id="detail-screen-id">Reference: --</p>
+                                        </div>
+                                        <div>
+                                            <button class="btn-delete-tiny" onclick="deleteCurrentScreen()"
+                                                title="Delete Auditorium">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="equipment-grid">
+                                        <!-- MODULE: MEDIA SERVER -->
+                                        <div class="equipment-card">
+                                            <div class="card-header">
+                                                <h3><i class="fas fa-microchip"></i> Media Server (IMS/IMB)</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Server Type (Brand)</label>
+                                                        <select id="cfg-server-type">
+                                                            <option value="GDC">GDC Technology</option>
+                                                            <option value="Dolby">Dolby Cinema</option>
+                                                            <option value="Barco">Barco Alchemy</option>
+                                                            <option value="Sony">Sony Media Block</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Exact Model (e.g. SX3000)</label>
+                                                        <input type="text" id="cfg-server-model">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Equipment Name</label>
+                                                        <input type="text" id="cfg-server-name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>IP Address (Control/SOAP)</label>
+                                                        <input type="text" id="cfg-server-ip">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Server Username</label>
+                                                        <input type="text" id="cfg-server-user" placeholder="e.g. technician">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Server Password</label>
+                                                        <input type="password" id="cfg-server-pass" placeholder="Enter Password">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Remote Access Mode</label>
+                                                        <select id="cfg-remote-mode">
+                                                            <option value="auto">Auto (By Model)</option>
+                                                            <option value="web">Web UI (Iframe)</option>
+                                                            <option value="vnc">VNC (Remote Desktop)</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>VNC Port (Default: 5900)</label>
+                                                        <input type="number" id="cfg-vnc-port">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Control Port (HTTP/TCP)</label>
+                                                        <input type="number" id="cfg-server-port" value="80">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>SNMP Port (Default: 161)</label>
+                                                        <input type="number" id="cfg-server-snmp-port">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- MODULE: PROJECTOR -->
+                                        <div class="equipment-card">
+                                            <div class="card-header">
+                                                <h3><i class="fas fa-video"></i> Digital Projector</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Projector Type</label>
+                                                        <select id="cfg-proj-type">
+                                                            <option value="Christie">Christie CP-Series</option>
+                                                            <option value="Barco">Barco DP-Series</option>
+                                                            <option value="NEC">NEC NC-Series</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Equipment Name</label>
+                                                        <input type="text" id="cfg-proj-name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>IP Address (Control/SNMP)</label>
+                                                        <input type="text" id="cfg-proj-ip">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Control Port</label>
+                                                        <input type="number" id="cfg-proj-port" value="161">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>SNMP Port (Default: 161)</label>
+                                                        <input type="number" id="cfg-proj-snmp-port">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- MODULE: AUDIO PROCESSOR -->
+                                        <div class="equipment-card">
+                                            <div class="card-header">
+                                                <h3><i class="fas fa-volume-up"></i> Audio Processor</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Processor Type</label>
+                                                        <select id="cfg-audio-type">
+                                                            <option value="Dolby CP750">Dolby CP750</option>
+                                                            <option value="Dolby CP850">Dolby CP850</option>
+                                                            <option value="Dolby CP950">Dolby CP950</option>
+                                                            <option value="USL">USL JSD-Series</option>
+                                                            <option value="QSC">Q-SYS / Core</option>
+                                                            <option value="Trinnov">Trinnov Ovation</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Equipment Name</label>
+                                                        <input type="text" id="cfg-audio-name">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>IP Address (Control/SNMP)</label>
+                                                        <input type="text" id="cfg-audio-ip">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Control Port</label>
+                                                        <input type="number" id="cfg-audio-port" value="80">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>SNMP Port (Default: 161)</label>
+                                                        <input type="number" id="cfg-audio-snmp-port">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- SYSTEM ACTIONS -->
+                                        <div
+                                            style="display:flex; justify-content:flex-end; padding-top:20px; grid-column: 1 / -1; gap: 8px;">
+                                            <button class="btn-danger btn-xs" onclick="cancelScreenConfig()"
+                                                style="width: auto !important; flex: none !important;">
+                                                <i class="fas fa-times"></i> Cancel
+                                            </button>
+                                            <button class="btn-primary btn-xs" onclick="saveScreenConfig()"
+                                                style="width: auto !important; flex: none !important;">
+                                                <i class="fas fa-save"></i> Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABOUT VIEW -->
+                <div id="view-tms-about" class="tms-view">
+                    <div class="card about-card">
+                        <div class="about-header">
+                            <div class="about-logo"><i class="fas fa-theater-masks"></i></div>
+                            <div>
+                                <h1 class="brand-title">PANGESTU<span>TMS</span></h1>
+                                <div class="brand-subtitle">Enterprise Cinema Management System</div>
+                            </div>
+                        </div>
+                        <div class="about-content">
+                            <div class="version-badge">Version 4.5.0 (Enterprise)</div>
+                            <p class="about-desc">
+                                A comprehensive system for managing content, playlists, and schedules across all
+                                auditoriums from a central location.
+                            </p>
+
+                            <hr class="divider">
+
+                            <div class="meta-grid">
+                                <div class="meta-item">
+                                    <label>Release Date</label>
+                                    <span>February 2026</span>
+                                </div>
+                                <div class="meta-item">
+                                    <label>License Type</label>
+                                    <span>Trial-Developer</span>
+                                </div>
+                                <div class="meta-item">
+                                    <label>Support</label>
+                                    <span>support@pangestu.id</span>
+                                </div>
+                            </div>
+
+                            <hr class="divider">
+
+                            <div class="copyright">
+                                &copy; 2026 Pangestu Systems. All rights reserved.<br>
+                                Protected by international copyright laws. Unauthorized reproduction or distribution of
+                                this program is strictly prohibited.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- END VIEW-CONTAINER -->
+        </main>
+    </div>
+
+    <div id="global-notifications"></div>
+    <!-- SCHEDULER MODAL (Standardized) -->
+    <div id="modal-scheduler" class="sch-modal-overlay">
+        <div class="sch-modal">
+            <div class="sch-modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Plot New Show</h3>
+                <span class="close-modal" onclick="closeModal('modal-scheduler')">&times;</span>
+            </div>
+            <div class="sch-modal-body">
+                <form id="scheduler-form">
+                    <div class="form-group">
+                        <label>Auditorium</label>
+                        <select id="sch-screen" required>
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Playlist (SPL)</label>
+                        <select id="sch-spl" required>
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date & Time</label>
+                            <input type="datetime-local" id="sch-time" required>
+                        </div>
+                    </div>
+                    <div class="sch-modal-actions">
+                        <button type="button" class="btn-secondary"
+                            onclick="closeModal('modal-scheduler')">Cancel</button>
+                        <button type="submit" class="btn-primary">Add to Schedule</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SPL DISTRIBUTE -->
+    <div id="modal-spl-distribute" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-network-wired"></i> Distribute Playlist</h3>
+                <span class="close-modal" onclick="closeModal('modal-spl-distribute')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Select target auditoriums to ingest this SPL:</p>
+                <div id="distribute-screen-list" class="checkbox-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div id="distribute-status" style="flex:1; font-size:12px; color:var(--text-muted)"></div>
+                <button class="btn-secondary" onclick="closeModal('modal-spl-distribute')">Cancel</button>
+                <button class="btn-primary" id="btn-confirm-distribute" onclick="confirmDistribute()">Send to
+                    Screens</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: LOAD SPL -->
+    <div id="modal-spl-load" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Load Playlist from Server</h3>
+                <span class="close-modal" onclick="closeModal('modal-spl-load')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="search-bar compact" style="margin-bottom:10px;">
+                    <input type="text" id="load-spl-search" placeholder="Search saved playlists...">
+                </div>
+                <div id="load-spl-list" class="spl-load-list">
+                    <!-- Populated by JS -->
+                    <div class="loading-spinner">Fetching playlists...</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('modal-spl-load')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-theater-control" class="modal-overlay">
+        <div class="modal large">
+            <div class="modal-header">
+                <h3 id="th-ctrl-title">Theater Control</h3>
+                <span class="close-modal" onclick="closeModal('modal-theater-control')">&times;</span>
+            </div>
+            <div class="modal-body" id="th-ctrl-body">
+                <!-- JS Populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: REMOTE VIEWER (Embedded) -->
+    <div id="modal-remote-viewer" class="modal-overlay">
+        <div class="modal full-screen-remote">
+            <div class="modal-header">
+                <h3 id="remote-viewer-title">Remote Interface</h3>
+                <div class="header-actions" style="display:flex; gap:10px; align-items:center;">
+                    <button class="btn-secondary btn-sm" onclick="refreshRemoteFrame()" title="Refresh"><i
+                            class="fas fa-sync-alt"></i> Refresh</button>
+                    <button class="btn-primary btn-sm" id="btn-open-external" title="Open in New Tab"><i
+                            class="fas fa-external-link-alt"></i> External Tab</button>
+                    <span class="close-modal" onclick="closeRemoteViewer()">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body" id="remote-viewer-body"
+                style="padding:0; overflow:hidden; height: 80vh; background:#0f172a;">
+                <iframe id="remote-iframe" style="width:100%; height:100%; border:none; background: white;"
+                    src="about:blank"></iframe>
+                <div id="vnc-container"
+                    style="display:none; width:100%; height:100%; color: white; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:15px;">
+                    <i class="fas fa-terminal fa-3x" style="color:var(--primary)"></i>
+                    <div style="text-align:center">
+                        <h2 style="margin:0">VNC Connector</h2>
+                        <p style="opacity:0.6; font-size:14px">Connecting to IMB Remote Display...</p>
+                    </div>
+                    <div id="noVNC_container" style="width:100%; height:100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: SAVE SPL (Custom Prompt) -->
+    <div id="modal-spl-save" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-export"></i> Save Playlist</h3>
+                <span class="close-modal" onclick="closeModal('modal-spl-save')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Playlist Name</label>
+                    <input type="text" id="input-spl-save-name" placeholder="Enter playlist name..."
+                        onkeydown="if(event.key==='Enter') confirmSaveSPL()">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('modal-spl-save')">Cancel</button>
+                <button class="btn-primary" onclick="confirmSaveSPL()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD USER MODAL -->
+    <div id="modal-add-user" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New User</h3>
+                <i class="fas fa-times close-modal" onclick="closeAddUserModal()"></i>
+            </div>
+            <div class="modal-body">
+                <form id="add-user-form">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="new-user-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="new-user-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-with-icon" style="position: relative;">
+                            <input type="password" id="new-user-pass" required style="padding-right: 40px;">
+                            <i class="fas fa-eye toggle-pass" onclick="togglePasswordVisibility('new-user-pass', this)"
+                                style="position: absolute; right: 12px; top: 12px; color: #94a3b8; cursor: pointer;"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Privilege Level</label>
+                        <select id="new-user-role">
+                            <option value="Admin">Administrator (Full Access)</option>
+                            <option value="Manager">Manager (Edit Schedules)</option>
+                            <option value="Operator">Operator (View Only)</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-ctrl" onclick="closeAddUserModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Create User Projector</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT USER MODAL -->
+    <div id="modal-edit-user" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Edit User</h3>
+                <i class="fas fa-times close-modal" onclick="closeEditUserModal()"></i>
+            </div>
+            <div class="modal-body">
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-id">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="edit-user-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="edit-user-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password (Optional)</label>
+                        <div class="input-with-icon" style="position: relative;">
+                            <input type="password" id="edit-user-pass" placeholder="Leave blank to keep current"
+                                style="padding-right: 40px;">
+                            <i class="fas fa-eye toggle-pass" onclick="togglePasswordVisibility('edit-user-pass', this)"
+                                style="position: absolute; right: 12px; top: 12px; color: #94a3b8; cursor: pointer;"></i>
+                        </div>
+                        <small style="color: var(--text-muted); font-size: 11px;">Only enter if you want to change
+                            it.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Privilege Level</label>
+                        <select id="edit-user-role">
+                            <option value="Admin">Administrator (Full Access)</option>
+                            <option value="Manager">Manager (Edit Schedules)</option>
+                            <option value="Operator">Operator (View Only)</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-ctrl" onclick="closeEditUserModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM ALERT MODAL -->
+    <div id="modal-custom-alert" class="modal-overlay">
+        <div class="modal-card small alert-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3><i class="fas fa-info-circle"></i> Notification</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p id="alert-modal-message">Notification message here.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="tool-btn highlight" id="btn-alert-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOM CONFIRM MODAL -->
+    <div id="modal-custom-confirm" class="modal-overlay">
+        <div class="modal-card small confirm-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3><i class="fas fa-question-circle"></i> Verification</h3>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-modal-message">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="tool-btn" id="btn-confirm-cancel">Cancel</button>
+                <button class="tool-btn highlight danger" id="btn-confirm-ok">Yes, Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>var exports = {}; var process = { env: { NODE_ENV: 'production' } }; var global = window;</script>
+    <script src="https://cdn.jsdelivr.net/npm/@novnc/novnc@1.6.0/lib/rfb.min.js"></script>
+    <script src="app.js?v=4.6"></script>
+</body>
+
+</html>

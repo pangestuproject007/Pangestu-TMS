@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Copyright (c) 2011, Doremi Labs, Inc.
+    All rights reserved.
+
+  Redistribution in source or binary forms, with or without
+  modification, are NOT permitted.
+
+    Doremi Labs, Inc.
+    1020 Chestnut St.
+    Burbank, CA 91506
+    Tel : (818) 562 1101
+    Fax : (818) 562 1109
+
+-->
+<wsdl:definitions name="StorageManagement_v1" targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1" xmlns:com="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:str="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/storagemanagement" xmlns:tns="http://www.doremilabs.com/dc/dcp/ws/v1" xmlns:v1_0="http://www.doremilabs.com/dc/dcp/ws/v1_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+              Storage Management provides functions to List, add or delete a storage unit.
+  </wsdl:documentation>
+ <wsdl:types>
+  <xsd:schema targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1_0">
+   <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+   <xsd:import namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common" schemaLocation="Common.xsd"/>
+   <xsd:import namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/storagemanagement" schemaLocation="StorageManagement.xsd"/>
+   <xsd:element name="GetStorageList">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetStorageListResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="storageList" type="str:ArrayOfStorage"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetStorageUnitInfo">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+      <xsd:element name="name" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetStorageUnitInfoResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="storageUnitInfo" type="str:StorageUnitInfo"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="AddActiveUnit">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+      <xsd:element name="storageUnit" type="xsd:string"/>
+      <xsd:element name="activeUnit" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="AddActiveUnitResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="RemoveActiveUnit">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+      <xsd:element name="storageUnit" type="xsd:string"/>
+      <xsd:element name="activeUnit" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="RemoveActiveUnitResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="StartStorageInit">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="storageName" type="xsd:string"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="driveCount" type="xsd:int"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="StartStorageInitResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetStorageInitStatus">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetStorageInitStatusResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="action" type="str:ActionType"/>
+      <xsd:element name="status" type="str:StorageInitStatus"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="logs" type="com:ArrayOfString"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetMainStorageTaskStatuses">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetMainStorageTaskStatusesResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="status" type="str:StorageInitStatus"/>
+      <xsd:element name="processStatus" type="str:ArrayOfProcessStatus"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="StartMainStorageTask">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+      <xsd:element name="action" type="str:ActionType"/>
+      <xsd:element name="interface" type="xsd:string"/>
+      <xsd:element name="ipAddress" type="com:IpAddress"/>
+      <xsd:element name="protocol" type="str:Protocol"/>
+      <xsd:element name="port" type="xsd:int"/>
+      <xsd:element name="password" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="StartMainStorageTaskResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="status" type="str:StorageInitStatus"/>
+      <xsd:element name="pendingAction" type="str:ActionType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetMainStorageTaskLogs">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="com:SessionIdentifier"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="GetMainStorageTaskLogsResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="status" type="str:StorageInitStatus"/>
+      <xsd:element name="logs" type="com:ArrayOfString"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+  </xsd:schema>
+ </wsdl:types>
+ <wsdl:message name="GetStorageList">
+  <wsdl:part element="v1_0:GetStorageList" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetStorageListResponse">
+  <wsdl:part element="v1_0:GetStorageListResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetStorageUnitInfo">
+  <wsdl:part element="v1_0:GetStorageUnitInfo" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetStorageUnitInfoResponse">
+  <wsdl:part element="v1_0:GetStorageUnitInfoResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="AddActiveUnit">
+  <wsdl:part element="v1_0:AddActiveUnit" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="AddActiveUnitResponse">
+  <wsdl:part element="v1_0:AddActiveUnitResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="RemoveActiveUnit">
+  <wsdl:part element="v1_0:RemoveActiveUnit" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="RemoveActiveUnitResponse">
+  <wsdl:part element="v1_0:RemoveActiveUnitResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="StartStorageInit">
+  <wsdl:part element="v1_0:StartStorageInit" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="StartStorageInitResponse">
+  <wsdl:part element="v1_0:StartStorageInitResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetStorageInitStatus">
+  <wsdl:part element="v1_0:GetStorageInitStatus" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetStorageInitStatusResponse">
+  <wsdl:part element="v1_0:GetStorageInitStatusResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetMainStorageTaskStatuses">
+  <wsdl:part element="v1_0:GetMainStorageTaskStatuses" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetMainStorageTaskStatusesResponse">
+  <wsdl:part element="v1_0:GetMainStorageTaskStatusesResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="StartMainStorageTask">
+  <wsdl:part element="v1_0:StartMainStorageTask" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="StartMainStorageTaskResponse">
+  <wsdl:part element="v1_0:StartMainStorageTaskResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetMainStorageTaskLogs">
+  <wsdl:part element="v1_0:GetMainStorageTaskLogs" name="parameters"/>
+ </wsdl:message>
+ <wsdl:message name="GetMainStorageTaskLogsResponse">
+  <wsdl:part element="v1_0:GetMainStorageTaskLogsResponse" name="parameters"/>
+ </wsdl:message>
+ <wsdl:portType name="StorageManagement_v1_0">
+  <wsdl:operation name="GetStorageList">
+   <wsdl:documentation>
+    GetStorageList
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:GetStorageList"/>
+   <wsdl:output message="tns:GetStorageListResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="GetStorageUnitInfo">
+   <wsdl:documentation>
+    GetStorageUnitInfo
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:GetStorageUnitInfo"/>
+   <wsdl:output message="tns:GetStorageUnitInfoResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="AddActiveUnit">
+   <wsdl:documentation>
+    AddActiveUnit
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:AddActiveUnit"/>
+   <wsdl:output message="tns:AddActiveUnitResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="RemoveActiveUnit">
+   <wsdl:documentation>
+    RemoveActiveUnit
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:RemoveActiveUnit"/>
+   <wsdl:output message="tns:RemoveActiveUnitResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="StartStorageInit">
+   <wsdl:documentation>
+    StartStorageInit
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:StartStorageInit"/>
+   <wsdl:output message="tns:StartStorageInitResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="GetStorageInitStatus">
+   <wsdl:documentation>
+    GetStorageInitStatus
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+   </wsdl:documentation>
+   <wsdl:input message="tns:GetStorageInitStatus"/>
+   <wsdl:output message="tns:GetStorageInitStatusResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="GetMainStorageTaskStatuses">
+   <wsdl:documentation>
+    GetMainStorageTaskStatuses
+                    Returns the EQ Preset List
+
+                 Arguments
+                    sessionId (com:SessionIdentifier)
+                    action (str:ActionType)
+
+
+                 Response
+                    statuses (str:ArrayOfProcessStatus)
+
+
+                 Faults
+                    "Internal server error" : If the server detects an error
+                    "Resource busy" : If CP is unavailable.
+   </wsdl:documentation>
+   <wsdl:input message="tns:GetMainStorageTaskStatuses"/>
+   <wsdl:output message="tns:GetMainStorageTaskStatusesResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="StartMainStorageTask">
+   <wsdl:documentation>
+    StartMainStorageTask
+                    Start specified "action" on the main storage NAS
+                    Action "repair" and "reset" are done on current applied configuration (other fields may have random value)
+                    Action "test_access", "test_config" and "initial_setup" are done using parameters of the current command
+
+
+                 Arguments
+                    sessionId (com:SessionIdentifier)
+                    action (str:ActionType)
+                    ipAddress (com:IpAddress)
+                    protocol (str:Protocol)
+                    port (xsd:int)
+                    password (xsd:string)
+
+
+                 Response
+
+
+                 Faults
+                    "Internal server error" : If the server detects an error
+   </wsdl:documentation>
+   <wsdl:input message="tns:StartMainStorageTask"/>
+   <wsdl:output message="tns:StartMainStorageTaskResponse"/>
+  </wsdl:operation>
+  <wsdl:operation name="GetMainStorageTaskLogs">
+   <wsdl:documentation>
+    GetMainStorageTaskLogs
+                    Returns the EQ Preset List
+
+                 Arguments
+                    sessionId (com:SessionIdentifier)
+                    action (str:ActionType)
+
+
+                 Response
+                    logs (com:ArrayOfString)
+
+
+                 Faults
+                    "Internal server error" : If the server detects an error
+                    "Resource busy" : If CP is unavailable.
+   </wsdl:documentation>
+   <wsdl:input message="tns:GetMainStorageTaskLogs"/>
+   <wsdl:output message="tns:GetMainStorageTaskLogsResponse"/>
+  </wsdl:operation>
+ </wsdl:portType>
+ <wsdl:binding name="StorageManagement_v1_0_SOAPBinding" type="tns:StorageManagement_v1_0">
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <wsdl:operation name="GetStorageList">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="GetStorageUnitInfo">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="AddActiveUnit">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="RemoveActiveUnit">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="StartStorageInit">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="GetStorageInitStatus">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="GetMainStorageTaskStatuses">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="StartMainStorageTask">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="GetMainStorageTaskLogs">
+   <soap:operation soapAction="" style="document"/>
+   <wsdl:input>
+    <soap:body use="literal"/>
+   </wsdl:input>
+   <wsdl:output>
+    <soap:body use="literal"/>
+   </wsdl:output>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name="StorageManagement_v1_0">
+  <wsdl:port binding="tns:StorageManagement_v1_0_SOAPBinding" name="SOAPOverHTTP">
+   <soap:address location="http://127.0.0.1:10000/dc/dcp/ws/v1/StorageManagement"/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>

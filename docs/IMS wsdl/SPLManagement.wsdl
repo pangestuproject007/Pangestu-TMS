@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Copyright (c) 2011, Doremi Labs, Inc.
+    All rights reserved.
+
+  Redistribution in source or binary forms, with or without
+  modification, are NOT permitted.
+
+    Doremi Labs, Inc.
+    1020 Chestnut St.
+    Burbank, CA 91506
+    Tel : (818) 562 1101
+    Fax : (818) 562 1109
+
+-->
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.doremilabs.com/dc/dcp/ws/v1" xmlns:v1_0="http://www.doremilabs.com/dc/dcp/ws/v1_0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:com="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common" xmlns:spl="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/splmanagement" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" name="SPLManagement_v1" targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1">
+    <wsdl:documentation>
+                SPL Management provides functions to List, add or delete a Show Playlist.
+    </wsdl:documentation>
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.doremilabs.com/dc/dcp/ws/v1_0">
+			<xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+			<xsd:import namespace="http://schemas.xmlsoap.org/wsdl/"/>
+			<xsd:import schemaLocation="Common.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/common"/>
+			<xsd:import schemaLocation="SPLManagement.xsd" namespace="http://www.doremilabs.com/dc/dcp/ws/v1/schemas/splmanagement"/>
+			<xsd:element name="GetSPLList">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLListResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="splList" type="spl:ArrayOfSplId"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteSPL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="splId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="DeleteSPLResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="splId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="splInfo" type="spl:SPLInfo"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLContent">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="splId" type="com:Uuid"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLContentResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetSPLContent">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SetSPLContentResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLListInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLListInfoResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="splList" type="spl:ArrayOfSplInfo"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLRuntime">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="sessionId" type="com:SessionIdentifier"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="GetSPLRuntimeResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="content" type="xsd:base64Binary"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="GetSPLList">
+		<wsdl:part name="parameters" element="v1_0:GetSPLList"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLListResponse">
+		<wsdl:part name="parameters" element="v1_0:GetSPLListResponse"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteSPL">
+		<wsdl:part name="parameters" element="v1_0:DeleteSPL"/>
+	</wsdl:message>
+	<wsdl:message name="DeleteSPLResponse">
+		<wsdl:part name="parameters" element="v1_0:DeleteSPLResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLInfo">
+		<wsdl:part name="parameters" element="v1_0:GetSPLInfo"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLInfoResponse">
+		<wsdl:part name="parameters" element="v1_0:GetSPLInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLContent">
+		<wsdl:part name="parameters" element="v1_0:GetSPLContent"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLContentResponse">
+		<wsdl:part name="parameters" element="v1_0:GetSPLContentResponse"/>
+	</wsdl:message>
+	<wsdl:message name="SetSPLContent">
+		<wsdl:part name="parameters" element="v1_0:SetSPLContent"/>
+	</wsdl:message>
+	<wsdl:message name="SetSPLContentResponse">
+		<wsdl:part name="parameters" element="v1_0:SetSPLContentResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLListInfo">
+		<wsdl:part name="parameters" element="v1_0:GetSPLListInfo"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLListInfoResponse">
+		<wsdl:part name="parameters" element="v1_0:GetSPLListInfoResponse"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLRuntime">
+		<wsdl:part name="parameters" element="v1_0:GetSPLRuntime"/>
+	</wsdl:message>
+	<wsdl:message name="GetSPLRuntimeResponse">
+		<wsdl:part name="parameters" element="v1_0:GetSPLRuntimeResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="SPLManagement_v1_0">
+		<wsdl:operation name="GetSPLList">
+			<wsdl:documentation>
+                 GetSPLList
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetSPLList"/>
+			<wsdl:output message="tns:GetSPLListResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSPL">
+			<wsdl:documentation>
+                 DeleteSPL
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:DeleteSPL"/>
+			<wsdl:output message="tns:DeleteSPLResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLInfo">
+			<wsdl:documentation>
+                 GetSPLInfo
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetSPLInfo"/>
+			<wsdl:output message="tns:GetSPLInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLContent">
+			<wsdl:documentation>
+                 GetSPLContent
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetSPLContent"/>
+			<wsdl:output message="tns:GetSPLContentResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="SetSPLContent">
+			<wsdl:documentation>
+                 SetSPLContent
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:SetSPLContent"/>
+			<wsdl:output message="tns:SetSPLContentResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLListInfo">
+			<wsdl:documentation>
+                 GetSPLListInfo
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetSPLListInfo"/>
+			<wsdl:output message="tns:GetSPLListInfoResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLRuntime">
+			<wsdl:documentation>
+                 GetSPLRuntime
+
+                 Arguments
+
+
+                 Response
+
+
+                 Faults
+
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetSPLRuntime"/>
+			<wsdl:output message="tns:GetSPLRuntimeResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SPLManagement_v1_0_SOAPBinding" type="tns:SPLManagement_v1_0">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="GetSPLList">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="DeleteSPL">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLContent">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SetSPLContent">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLListInfo">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetSPLRuntime">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SPLManagement_v1_0">
+		<wsdl:port name="SOAPOverHTTP" binding="tns:SPLManagement_v1_0_SOAPBinding">
+			<soap:address location="http://127.0.0.1:10000/dc/dcp/ws/v1/SPLManagement"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

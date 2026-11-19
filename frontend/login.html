@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Cinema Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 20%);
+        }
+
+        .login-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: white;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 16px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="logo">
+            <i class="fas fa-theater-masks"></i>
+            <div>PANGESTU<span>TMS</span></div>
+        </div>
+        <div class="subtitle">Enterprise Management System</div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" required placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="password" required placeholder="Enter your password"
+                        style="padding-right: 40px;">
+                    <i class="fas fa-eye" id="toggle-password"
+                        style="position: absolute; right: 12px; top: 12px; color: #94a3b8; cursor: pointer;"></i>
+                </div>
+            </div>
+            <button type="submit">Sign In</button>
+            <div id="error-msg" class="error-msg">Invalid credentials. Please try again.</div>
+        </form>
+    </div>
+
+    <script>
+        // Password Toggle
+        const togglePass = document.getElementById('toggle-password');
+        const passInput = document.getElementById('password');
+
+        togglePass.addEventListener('click', () => {
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
+            togglePass.classList.toggle('fa-eye');
+            togglePass.classList.toggle('fa-eye-slash');
+        });
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const errEl = document.getElementById('error-msg');
+            const btn = e.target.querySelector('button');
+
+            btn.disabled = true;
+            btn.textContent = 'Verifying...';
+            errEl.style.display = 'none';
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: user, password: pass })
+                });
+                const data = await res.json();
+
+                if (data.status === 'ok') {
+                    localStorage.setItem('tms_user', JSON.stringify(data.user));
+                    localStorage.setItem('tms_token', data.token);
+                    window.location.href = '/index.html';
+                } else {
+                    errEl.style.display = 'block';
+                    errEl.textContent = data.error || 'Login Failed';
+                }
+            } catch (error) {
+                errEl.style.display = 'block';
+                errEl.textContent = 'Connection Error';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Sign In';
+            }
+        });
+    </script>
+</body>
+
+</html>

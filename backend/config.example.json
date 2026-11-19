@@ -1,0 +1,53 @@
+﻿{
+    "screens":  [
+                    {
+                        "id":  "20260203112612",
+                        "name":  "Cinema 1",
+                        "projector_ip":  "192.168.100.1",
+                        "ims_ip":  "192.168.100.50",
+                        "server_type":  "Dolby",
+                        "server_model":  "IMS",
+                        "server_name":  "SD",
+                        "server_port":  80,
+                        "server_snmp_port":  161,
+                        "remote_mode":  "web",
+                        "vnc_port":  5900,
+                        "proj_type":  "Barco",
+                        "proj_name":  "12e",
+                        "proj_port":  43728,
+                        "proj_snmp_port":  161,
+                        "audio_type":  "Dolby CP750",
+                        "audio_name":  "te",
+                        "audio_ip":  "192.168.100.4",
+                        "audio_port":  80,
+                        "audio_snmp_port":  161
+                    },
+                    {
+                        "id":  "20260715162920",
+                        "name":  "Cinema 2",
+                        "projector_ip":  "",
+                        "ims_ip":  "192.168.100.22",
+                        "server_type":  "GDC",
+                        "server_model":  "SR-1000",
+                        "server_user":  "Maintenance",
+                        "server_pass":  "",
+                        "server_name":  "C2",
+                        "server_port":  80,
+                        "server_snmp_port":  161,
+                        "remote_mode":  "vnc",
+                        "vnc_port":  5900,
+                        "proj_type":  "Barco",
+                        "proj_name":  "10S",
+                        "proj_port":  161,
+                        "proj_snmp_port":  161,
+                        "audio_type":  "Dolby CP750",
+                        "audio_name":  "",
+                        "audio_ip":  "",
+                        "audio_port":  80,
+                        "audio_snmp_port":  161
+                    }
+                ],
+    "port":  161,
+    "community":  "public",
+    "model":  "Barco"
+}

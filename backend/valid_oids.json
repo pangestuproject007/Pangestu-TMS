@@ -1,0 +1,802 @@
+[
+  {
+    "name": "board1Desc",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.1",
+    "syntax": "DisplayString",
+    "description": "Board 1 Description",
+    "sample_value": ""
+  },
+  {
+    "name": "board2Desc",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.2",
+    "syntax": "DisplayString",
+    "description": "Board 2 Description",
+    "sample_value": ""
+  },
+  {
+    "name": "board3Desc",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.3",
+    "syntax": "DisplayString",
+    "description": "Board 3 Description",
+    "sample_value": ""
+  },
+  {
+    "name": "board4Desc",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.4",
+    "syntax": "DisplayString",
+    "description": "Board 4 Description",
+    "sample_value": ""
+  },
+  {
+    "name": "board5Desc",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.5",
+    "syntax": "DisplayString",
+    "description": "Board 5 Description",
+    "sample_value": ""
+  },
+  {
+    "name": "projWarnings",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.1.0",
+    "syntax": "Unsigned32",
+    "description": "Number of active warnings.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projErrors",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.2.0",
+    "syntax": "Unsigned32",
+    "description": "Number of active errors.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projNotif",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.3.0",
+    "syntax": "Unsigned32",
+    "description": "Number of active notifications.",
+    "sample_value": "0"
+  },
+  {
+    "name": "lampHours",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.8.1.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.8.1.2.1",
+    "syntax": "Unsigned32",
+    "description": "Current lamp run time in hours.",
+    "sample_value": "11"
+  },
+  {
+    "name": "testPatternName",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.3.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.3.3.0",
+    "syntax": "DisplayString",
+    "description": "Indicates the name of the active testpattern Important remark: NOT FOR DP90/DP100/DP3000 !",
+    "sample_value": "off"
+  },
+  {
+    "name": "dmdWidth",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.8.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.8.1.0",
+    "syntax": "Integer32",
+    "description": "Indicates the width of the DMD.",
+    "sample_value": "2048"
+  },
+  {
+    "name": "dmdHeight",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.8.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.8.2.0",
+    "syntax": "Integer32",
+    "description": "Indicates the height of the DMD.",
+    "sample_value": "1080"
+  },
+  {
+    "name": "s2GeneralStatus",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.11.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.11.4.0",
+    "syntax": "BITS",
+    "description": "This is the TI series2 general status. Possible values: - systemError - selfTestError - installReleasePackageError - loadReleasePackageError  Note: Value 0 (no bits set) means no error.",
+    "sample_value": "\u0000"
+  },
+  {
+    "name": "tiPackageVersion",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.12",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.12.0",
+    "syntax": "OCTET STRING (SIZE (14))",
+    "description": "This is the package version number representing the TI software and firmware for this projector. The version number complies with the following format: Major.Minor.Build In case the build octets equal zero, then you should leave them out of consideration.",
+    "sample_value": "1.2.256"
+  },
+  {
+    "name": "s2BoardTypeICP",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.15.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.15.1.0",
+    "syntax": "INTEGER",
+    "description": "The ICP board type: dc2Kseries2-ICP-1-0   = Series2 ICP Board 2K-only  hardware version 1.0 (8MB FMT Flash) dc2K4Kseries2-ICP-1-0 = Series2 ICP Board 4K-Ready hardware version 1.0 (16MB FMT Flash) dc2K4Kseries2-ICP-1-5 = Series2 ICP Board 4K-Ready hardware version 1.5 (16MB FMT Flash) dcBarcoIntegrated-ICMP= Integrated Cinema Media Player (ICMP) from Barco",
+    "sample_value": "131"
+  },
+  {
+    "name": "s2RedSatelliteType",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.15.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.15.2.0",
+    "syntax": "INTEGER",
+    "description": "The Red Satellite type: lvdsX2 = 2xLVDS satellite ddr2K  = 2K DDR satellite ddr4K  = 2K DDR satellite",
+    "sample_value": "16"
+  },
+  {
+    "name": "s2GreenSatelliteType",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.15.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.15.3.0",
+    "syntax": "INTEGER",
+    "description": "The Green Satellite type: lvdsX2 = 2xLVDS satellite ddr2K  = 2K DDR satellite ddr4K  = 2K DDR satellite",
+    "sample_value": "1"
+  },
+  {
+    "name": "s2BlueSatelliteType",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.15.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.15.4.0",
+    "syntax": "INTEGER",
+    "description": "The Blue Satellite type: lvdsX2 = 2xLVDS satellite ddr2K  = 2K DDR satellite ddr4K  = 2K DDR satellite",
+    "sample_value": "1"
+  },
+  {
+    "name": "s2DmdType",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.15.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.15.5.0",
+    "syntax": "INTEGER",
+    "description": "The DMDs type: dc2K098 = 2K DigitalCinema 0.98 inch DMD (2xLVDS) dc2K120 = 2K DigitalCinema 1.20 inch DMD (DDR) dc4K138 = 4K DigitalCinema 1.38 inch DMD (DDR) dc2K069 = 2K DigitalCinema 0.69 inch DMD (DDR)",
+    "sample_value": "3"
+  },
+  {
+    "name": "tiSerialNumber",
+    "oid": "1.3.6.1.4.1.12612.220.11.1.2.16",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.1.2.16.0",
+    "syntax": "OCTET STRING (SIZE (10))",
+    "description": "This is the TI serial number : - InterfaceBoard serial number (Series1) - ICP Board serial number      (Series2) ==NOT VALID WITH BARCO ICMP==",
+    "sample_value": "\u0000\u0000\u0000\u0095P\u0000&e"
+  },
+  {
+    "name": "projSerialNumber",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.1.0",
+    "syntax": "OCTET STRING (SIZE (10))",
+    "description": "This is the serial number of the projector.",
+    "sample_value": "2590084529"
+  },
+  {
+    "name": "projRunTime",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.3.0",
+    "syntax": "Unsigned32",
+    "description": "This is the projector runtime.",
+    "sample_value": "53"
+  },
+  {
+    "name": "lampSerialNumber",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.1.0",
+    "syntax": "OCTET STRING (SIZE (10))",
+    "description": "This is the serial number of the lamp. - XENON lamp only -",
+    "sample_value": "AHD647A"
+  },
+  {
+    "name": "lampArticleNumber",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.2.0",
+    "syntax": "OCTET STRING (SIZE (8))",
+    "description": "This is the Barco article number of the lamp. - XENON lamp only -",
+    "sample_value": "R9855971 USHIO(R) DXL-22BAF"
+  },
+  {
+    "name": "lampStatus",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.3.0",
+    "syntax": "BITS",
+    "description": "This is the lamp status. - for both Xenon or UHP - on: Lamp on",
+    "sample_value": "\u0000"
+  },
+  {
+    "name": "lampMode",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.4.0",
+    "syntax": "BITS",
+    "description": "This is the lamp mode. - for both Xenon or UHP - cloON: Constant Light Output active",
+    "sample_value": "\u0000"
+  },
+  {
+    "name": "lampStrikes",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.5.0",
+    "syntax": "Integer32",
+    "description": "This is the number of times the lamp has been switched on. - XENON lamp only -",
+    "sample_value": "61"
+  },
+  {
+    "name": "lampPower",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.6",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.6.0",
+    "syntax": "Integer32",
+    "description": "This is the actual lamp power. - XENON lamp only -",
+    "sample_value": "0"
+  },
+  {
+    "name": "lampCurrent",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.7",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.7.0",
+    "syntax": "Integer32",
+    "description": "This is the actual lamp current. - XENON lamp only -",
+    "sample_value": "0"
+  },
+  {
+    "name": "lampOutput",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.9",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.9.0",
+    "syntax": "Integer32",
+    "description": "This is the actual total lamp output (can include more than 1 lamp). - for both Xenon or UHP - ",
+    "sample_value": "0"
+  },
+  {
+    "name": "lampErrorStatus",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.10",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.10.0",
+    "syntax": "BITS",
+    "description": "This is the lamp activity status. - for both Xenon or UHP - ",
+    "sample_value": "\u0001"
+  },
+  {
+    "name": "dowserPosition",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.5.0",
+    "syntax": "INTEGER",
+    "description": "The actual dowser (shutter) position.",
+    "sample_value": "0"
+  },
+  {
+    "name": "barcoPackageVersion",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.8",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.8.0",
+    "syntax": "OCTET STRING (SIZE (14))",
+    "description": "This is the general package version number representing all Barco software and firmware for this projector. The version number complies with the following format: Major.Minor.Build In case the build octets equal zero, then you should leave them out of consideration.",
+    "sample_value": "1.7.93"
+  },
+  {
+    "name": "dviPortRuntime",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.9.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.9.1.0",
+    "syntax": "Unsigned32",
+    "description": "This is the DVI port runtime.",
+    "sample_value": "0"
+  },
+  {
+    "name": "hdsdiPortRuntime",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.9.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.9.2.0",
+    "syntax": "Unsigned32",
+    "description": "This is the the HD-SDI port runtime.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projWarnings",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.1.0",
+    "syntax": "Unsigned32",
+    "description": "This is the number of projector warnings.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projErrors",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.2.0",
+    "syntax": "Unsigned32",
+    "description": "This is the number of projector errors.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projNotif",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.10.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.10.3.0",
+    "syntax": "Unsigned32",
+    "description": "This is the number of projector notifications.",
+    "sample_value": "0"
+  },
+  {
+    "name": "projS2PowerMode",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.11",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.11.0",
+    "syntax": "INTEGER",
+    "description": "This is the projector (system) status (Series2 only). 0 : Projector is in SLEEP MODE 1 : Projector is ON",
+    "sample_value": "1"
+  },
+  {
+    "name": "projType",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.1.0",
+    "syntax": "DisplayString",
+    "description": "This is the projector type description (DP###).",
+    "sample_value": "DP2K-10S"
+  },
+  {
+    "name": "projIdentifier",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.2.0",
+    "syntax": "Integer32",
+    "description": "This is the unique projector identifier (unique integer).",
+    "sample_value": "39"
+  },
+  {
+    "name": "projHardwareIndex",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.1.0",
+    "syntax": "Unsigned32 (0..19)",
+    "description": "Indentifies the hardware part (a maximum of 20 parts can be listed). 0    harware part 1 2    harware part 2 3    harware part 3 ..    harware part .. n    harware part n ..    harware part .. 19    harware part 20",
+    "sample_value": "0"
+  },
+  {
+    "name": "projHardwareName",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.2.0",
+    "syntax": "DisplayString",
+    "description": "This is the name of the hardware in the list.",
+    "sample_value": "R7681044 button module board id"
+  },
+  {
+    "name": "projHardwareRevision",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.3.0",
+    "syntax": "DisplayString",
+    "description": "This is the revision of the listed hardware parts.",
+    "sample_value": "06"
+  },
+  {
+    "name": "projHardwareSN",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.4.0",
+    "syntax": "DisplayString",
+    "description": "This is the Serial Number of the listed hardware parts.",
+    "sample_value": "9730216058"
+  },
+  {
+    "name": "projHardwareProdDate",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.12.3.1.5.0",
+    "syntax": "DisplayString",
+    "description": "This is the production date of the listed hardware parts.",
+    "sample_value": "06APR2017"
+  },
+  {
+    "name": "projLensType",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.13",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.13.0",
+    "syntax": "DisplayString",
+    "description": "String displaying the full lens type - Lens Article Number (R#######) - Lens Name",
+    "sample_value": "R9856523 MINOLTA(R) 0.69\" DC2K 1.7-2.55 F/2.5"
+  },
+  {
+    "name": "projS2ServiceMode",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.14",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.14.0",
+    "syntax": "INTEGER",
+    "description": "This is the projector Service Mode state (Series2 only).\\ In ServiceMode, Snmp values are not refreshed anymore and all traps are disabled. 0 : Projector is in Normal  Mode 1 : Projector is in Service Mode (for maintenance...)",
+    "sample_value": "0"
+  },
+  {
+    "name": "presetActive",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.3.0",
+    "syntax": "DisplayString",
+    "description": "The name of the active preset.",
+    "sample_value": ""
+  },
+  {
+    "name": "s2InputSelected",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.5.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.5.1.0",
+    "syntax": "INTEGER",
+    "description": "The status of the input selection.  sMPTE292A(1),                : 1 (292-a),                 SMPTE 292-A sMPTE292B(2),                : 2 (292-b),                 SMPTE 292-B sMPTE292Dual(3),            : 3 (292-ab-duallink),         SMPTE 292-Dual dVIA(4),                    : 4 (dvi-a),                 DVI-A dVIB(5),                    : 5 (dvi-b),                 DVI-B dVIDualTwin(6),                :  6 (dvi-ab-twin),         DVI-Dual/Twin sMPTE2923D(7),                : 7 (292-ab-3d),             SMPTE 292 3D dVI3D(8),                    : 8 (dvi-ab-3d),             DVI 3D internalMediaBlock(9),        : 9 (icp-lvds-b),             Internal Media Block (IMB) dVI4K(10),                    : 10 (dvi-ab-hspan),         DVI 4K (using horizontal spanning) sMPTE424A(11),                : 11 (424-a-levela),         SMPTE 424-A  (3G) sMPTE424B(12),                : 12 (424-b-levela),         SMPTE 424-B  (3G) sMPTE4243D(13),                : 13 (424-ab-3d-levela),     SMPTE 424-3D (3G) sMPTE424AB-HS-A(14),        : 14 (424-ab-hspan-levela), reserved1(15),                : 15 (292-c), reserved2(16),                : 16 (292-d), reserved3(17),                : 17 (292-cd-duallink), reserved4(18),                : 18 (292-cd-3d), sMPTE292ABCD(19),             : 19 (292-abcd-quadlink), sMPTE424ABCD-A(20),            : 20 (424-abcd-quadlink-levela), sMPTE424A-DL-B(21),            : 21 (424-a-duallink-levelb), sMPTE424B-DL-B(22),            : 22 (424-b-duallink-levelb), sMPTE424A-DS-B(23),           : 23 (424-a-dualstream-levelb), sMPTE424B-DS-B(24),            : 24 (424-b-dualstream-levelb), sMPTE424AB3D-B(25),            : 25 (424-ab-3d-levelb), sMPTE424ABCD-A(26),            : 26 (424-abcd-quadlink-levelb), sMPTE424A-HFR-A(27),        : 27 (424-a-hfr-levela), sMPTE424AB-HFR-A(28),        : 28 (424-ab-hfr-levela), sMPTE424AB-3D-HFR-A(29),    : 29 (424-ab-3d-hfr-levela), sMPTE424AB-HFR-B(30),        : 30 (424-ab-hfr-levelb), sMPTE292AplusB(31),         : 31 (292-a+b), sMPTE424AplusB-A(32),        : 32 (424-a+b-levela), sMPTE424AplusB-HFR-A(33),    : 33 (424-a+b-hfr-levela), sMPTE424AplusB-DL-B(33),    : 34 (424-a+b-duallink-levelb), sMPTE292AB-HFR(35),            : 35 (292-ab-hfr), sMPTE424B-HFR-A(36),        : 36 (424-b-hfr-levela), sMPTE424A-HFR-B(37),        : 37 (424-a-hfr-levelb), sMPTE424B-HFR-B(38),        : 38 (424-b-hfr-levelb), icmpMediaPlayer(39),         : 39 (icmp-mediaplayer), icmpDisplayPortA(40),         : 40 (icmp-displayport-a), icmpDisplayPortB(41),         : 41 (icmp-displayport-b), icmpDisplayPortAB(42),         : 42 (icmp-displayport-ab), icmpDisplayPortAB-HS(43),     : 43 (icmp-displayport-ab-hspan), icmpHdmi(44),                 : 44 (icmp-hdmi), icmp292A(45),                 : 45 (icmp-292-a), icmp292B(46),                 : 46 (icmp-292-b), icmp292AB-DL(47),             : 47 (icmp-292-ab-duallink), icmp424A(48),                 : 48 (icmp-424-a), icmp424B(49),                 : 49 (icmp-424-b), icmp424AB-HS(50),             : 50 (icmp-424-ab-hspan), icmpDisplayPortAB-HS-3D(50),: 51 (icmp-displayport-ab-hspan-3d), icmpDisplayPortA-3D(52),     : 52 (icmp-displayport-a-3d), icmpDisplayPortB-3D(52),     : 53 (icmp-displayport-b-3d), internalMediaBlock4K(54),     : 54 (icp-lvds-b-quadlink)",
+    "sample_value": "9"
+  },
+  {
+    "name": "s2InputFileSelected",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.5.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.5.2.0",
+    "syntax": "DisplayString",
+    "description": "This is the name of the input file selected (Series2 only).",
+    "sample_value": "imbmediablock"
+  },
+  {
+    "name": "TempAmbient",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.1",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempAmbient",
+    "sample_value": ""
+  },
+  {
+    "name": "TempRedDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.2",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempRedDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "TempGreenDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.3",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempGreenDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "TempBlueDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.4",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempBlueDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLamp",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.5",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLamp",
+    "sample_value": ""
+  },
+  {
+    "name": "TempPfcHeatsink",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.6",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.6",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempPfcHeatsink",
+    "sample_value": ""
+  },
+  {
+    "name": "TempSmpsPrimHeatsink",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.7",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.7",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempSmpsPrimHeatsink",
+    "sample_value": ""
+  },
+  {
+    "name": "TempSmpsSecHeatsink",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.8",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.8",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempSmpsSecHeatsink",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLightPipe",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.9",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.9",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLightPipe",
+    "sample_value": ""
+  },
+  {
+    "name": "TempEngineAir",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.10",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.10",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempEngineAir",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLps30Heatsink1",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.11",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.11",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLps30Heatsink1",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLps30Heatsink2",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.12",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.12",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLps30Heatsink2",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLps30Ambient",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.13",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.13",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLps30Ambient",
+    "sample_value": ""
+  },
+  {
+    "name": "TempLps30Transformer",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.14",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.2.14",
+    "syntax": "Integer32",
+    "description": "Temperature sensor: TempLps30Transformer",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedColdMirror",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.1",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedColdMirror",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedEngine",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.2",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedEngine",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedLampAnode",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.3",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedLampAnode",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedLampCathode",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.4",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedLampCathode",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedSmps1 (left)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.5",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedSmps1 (left)",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedSmps2 (right)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.6",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.6",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedSmps2 (right)",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedRedDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.7",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.7",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedRedDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedGreenDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.8",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.8",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedGreenDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedBlueDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.9",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.9",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedBlueDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedElectronics1 (top)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.10",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.10",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedElectronics1 (top)",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedElectronics2 (bottom)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.11",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.11",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedElectronics2 (bottom)",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedIcp",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.12",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.12",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedIcp",
+    "sample_value": ""
+  },
+  {
+    "name": "FanspeedLightPipe",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.13",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.2.13",
+    "syntax": "Unsigned32",
+    "description": "Fan Speed sensor: FanspeedLightPipe",
+    "sample_value": ""
+  },
+  {
+    "name": "lampMaxHours",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.4.8.1.2.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.4.8.1.2.2",
+    "syntax": "Unsigned32",
+    "description": "Maximum guaranteed lamp run time.",
+    "sample_value": ""
+  },
+  {
+    "name": "Voltage12s",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.1",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: Voltage12s",
+    "sample_value": ""
+  },
+  {
+    "name": "Voltage12",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.2",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: Voltage12",
+    "sample_value": ""
+  },
+  {
+    "name": "Voltage24",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.3",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: Voltage24",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanColdMirror",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.4",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanColdMirror",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanRedDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.5",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanRedDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanGreenDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.6",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.6",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanGreenDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanBlueDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.7",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.7",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanBlueDmd",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanEngine",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.8",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.8",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanEngine",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanLightPipe",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.9",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.9",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanLightPipe",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanLampAnode",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.10",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.10",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanLampAnode",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanLampCathode",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.11",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.11",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanLampCathode",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanSmps",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.12",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.12",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanSmps",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanElectronics1 (top)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.13",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.13",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanElectronics1 (top)",
+    "sample_value": ""
+  },
+  {
+    "name": "VoltageFanElectronics2 (bottom)",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.14",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.2.1.2.14",
+    "syntax": "Integer32",
+    "description": "Voltage sensor: VoltageFanElectronics2 (bottom)",
+    "sample_value": ""
+  },
+  {
+    "name": "DiagTempRedDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.2",
+    "syntax": "Diagnosis",
+    "description": "Diagnosis for Red DMD Temp: normal(0), tooHigh(1), tooLow(2), warningHigh(4)..."
+  },
+  {
+    "name": "DiagTempGreenDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.3",
+    "syntax": "Diagnosis",
+    "description": "Diagnosis for Green DMD Temp"
+  },
+  {
+    "name": "DiagTempBlueDmd",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.1.1.7.4",
+    "syntax": "Diagnosis",
+    "description": "Diagnosis for Blue DMD Temp"
+  },
+  {
+    "name": "DiagFanSmps1",
+    "oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.7.5",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.4.2.1.3.1.7.5",
+    "syntax": "Diagnosis",
+    "description": "Diagnosis for SMPS Fan 1 (Warning/Error detector)"
+  },
+  {
+    "name": "MaintRemainA",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.1",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.1",
+    "syntax": "DisplayString",
+    "description": "Maintenance Type A remaining seconds"
+  },
+  {
+    "name": "MaintRemainB",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.2",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.2",
+    "syntax": "DisplayString",
+    "description": "Maintenance Type B remaining seconds"
+  },
+  {
+    "name": "MaintRemainC",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.3",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.3",
+    "syntax": "DisplayString",
+    "description": "Maintenance Type C remaining seconds"
+  },
+  {
+    "name": "MaintRemainD",
+    "oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.4",
+    "query_oid": "1.3.6.1.4.1.12612.220.11.2.2.15.1.7.4",
+    "syntax": "DisplayString",
+    "description": "Maintenance Type D remaining seconds"
+  }
+]

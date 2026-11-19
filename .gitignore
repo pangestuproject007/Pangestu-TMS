@@ -1,0 +1,9 @@
+﻿# Secrets / local config (copy from *.example.json)
+backend/config.json
+backend/users.json
+# Runtime
+backend/logs/
+__pycache__/
+*.pyc
+last_soap_resp.xml
+*.tmp
